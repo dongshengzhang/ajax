@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+
+<head>
+    <title></title>
+    
+</head>
+<body>
+
+
+<table id="example" class="display" cellspacing="0" width="100%">
+     
+    </table>
+
+
+<div id="placeholder"></div>
+<div id="readfromfile"></div>
+<script>
+    var data = { "users": [
+            {
+                "firstName": "Ray",
+                "lastName": "Villalobos",
+                "joined": {
+                    "month": "January",
+                    "day": 12,
+                    "year": 2012
+                }
+            },
+            {
+                "firstName": "John",
+                "lastName": "Jones",
+                "joined": {
+                    "month": "April",
+                    "day": 28,
+                    "year": 2010
+                }
+            }
+    ]
+    }
+
+    var output = "<ul>";
+    for (var i in data.users) {
+        output += "<li>" + data.users[i].firstName + " " + data.users[i].lastName + "--" + data.users[i].joined.month + "</li>";
+    }
+    output += "</ul>";
+
+    document.getElementById("placeholder").innerHTML = output;
+
+
+    $.getJSON('data.json', function(data) {
+            var output="<ul>";
+            for (var i in data.users) {
+                output+="<li>" + data.users[i].firstName + " " + data.users[i].lastName + "--" + data.users[i].joined.month+"</li>";
+            }
+
+            output+="</ul>";
+            document.getElementById("readfromfile").innerHTML=output;
+        });
+
+       //var strTest =  [["25", "Indocin", "David", "\/Date(1450476046815)\/"], ["50", "Enebrel", "Sam", "\/Date(1450476046815)\/"], ["10", "Hydralazine", "Christoff", "\/Date(1450476046815)\/"], ["21", "Combivent", "Janet", "\/Date(1450476046815)\/"], ["100", "Dilantin", "Melanie", "\/Date(1450476046815)\/"]];
+         var strTest =  [["25", "Indocin", "David", "\/Date(1450476979208)\/"], ["50", "Enebrel", "Sam", "\/Date(1450476979208)\/"], ["10", "Hydralazine", "Christoff", "\/Date(1450476979208)\/"], ["21", "Combivent", "Janet", "\/Date(1450476979208)\/"], ["100", "Dilantin", "Melanie", "\/Date(1450476979208)\/"]];
+         $(document).ready(function () {
+             $.ajax({
+                 type: "POST",
+                 url: '/Default.aspx/GetQueryInfo',
+                 data: {},
+                 contentType: "application/json; charset=utf-8",
+                 dataType: 'json',
+
+                 success: function (data) {
+                     var objdata = $.parseJSON(data.d);
+                     var dataSet = data.d;
+                     var resultStr = dataSet.substring(10, dataSet.length - 7);
+                     resultStr += "]";
+                     var objdata = $.parseJSON(resultStr);
+                   
+                     $('#example').DataTable({
+                         data: objdata,
+                         columns: [
+                { title: "Dosage" },
+                { title: "Drug" },
+                { title: "Patient" },
+                { title: "Date" }
+
+            ]
+                     });
+                     // now iterate through this object's contents and load your gridview
+                 }
+
+
+             });
+         });
+
+
+//        $(document).ready(function () {
+//            $('#example').DataTable({
+//                data: dataSet,
+//                columns: [
+//            { title: "Dosage" },
+//            { title: "Drug" },
+//            { title: "Patient" },
+//            { title: "Data" }
+// 
+//        ]
+//            });
+//        });
+
+</script>
+
+</body>
+</html>

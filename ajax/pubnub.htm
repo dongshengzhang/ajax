@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+    <script charset="utf-8">
+        (function () {
+
+            var PUBNUB_demo = PUBNUB.init({
+                publish_key: 'demo',
+                subscribe_key: 'demo'
+            });
+
+            PUBNUB_demo.subscribe({
+                channel: 'demo_tutorial',
+                message: function (m) { console.log(m.text); alert(m.text); },
+                connect: publish
+            });
+
+            function publish() {
+                PUBNUB_demo.publish({
+                    channel: 'demo_tutorial',
+                    message: { "text": "dong test!" }
+                });
+            }
+
+        })();
+
+    </script>
+</body>
+</html>

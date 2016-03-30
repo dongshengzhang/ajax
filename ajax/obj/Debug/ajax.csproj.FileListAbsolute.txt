@@ -1,0 +1,11 @@
+C:\zhang\projects\ajax\ajax\bin\ajax.dll
+C:\zhang\projects\ajax\ajax\bin\ajax.pdb
+C:\zhang\projects\ajax\ajax\obj\Debug\ResolveAssemblyReference.cache
+C:\zhang\projects\ajax\ajax\obj\Debug\ajax.dll
+C:\zhang\projects\ajax\ajax\obj\Debug\ajax.pdb
+C:\dong\project\ajax\ajax\bin\ajax.dll
+C:\dong\project\ajax\ajax\bin\ajax.pdb
+C:\dong\project\ajax\ajax\obj\Debug\ajax.dll
+C:\dong\project\ajax\ajax\obj\Debug\ajax.pdb
+C:\dong\project\ajax\ajax\bin\Newtonsoft.Json.xml
+C:\dong\project\ajax\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
